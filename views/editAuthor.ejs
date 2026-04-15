@@ -1,0 +1,52 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <h1>Updating Author Data</h1>
+    <form method="POST" action="/author/edit">
+        <input type="hidden" name="authorId" value="<%=authorInfo[0].authorId%>">
+        
+        First Name:<br>
+        <input type="text" name="fName" value="<%=authorInfo[0].firstName%>"><br>
+        
+        Last Name:<br>
+        <input type="text" name="lName" value="<%=authorInfo[0].lastName%>"><br>
+        
+        Date of Birth:<br>
+        <input type="date" name="dob" value="<%=authorInfo[0].dobISO%>"><br>
+        
+        Date of Death:<br>
+        <input type="date" name="dod" value="<%=authorInfo[0].dodISO%>"><br>
+        
+        Sex:
+        <input type="radio" name="sex" value="M"
+            <% if (authorInfo[0].sex == "M") { %>
+                checked
+            <% } %>x
+        > Male
+        <input type="radio" name="sex" value="F"
+            <% if (authorInfo[0].sex == "F") { %>
+                checked
+            <% } %>
+        > Female
+        <br>
+
+        Profession:
+        <br>
+        <input type="text" name="profession" value="<%=authorInfo[0].profession%>"><br>
+        
+        Country:
+        <br>
+        <input type="text" name="country" value="<%=authorInfo[0].country%>"><br>
+        
+        Portrait:
+        <br>
+        <input type="text" name="portrait" value="<%=authorInfo[0].portrait%>"><br>
+        
+        Biography:
+        <br>
+        <input type="text" name="biography" value="<%=authorInfo[0].biography%>"><br>
+        
+        <button>Update Author</button>
+    </form>
+</body>
+</html>

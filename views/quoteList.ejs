@@ -1,0 +1,32 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+
+    <main>
+        <h2> Famous Quotes<br></h2>
+            <h1> Admin Section </h1>
+            <img src="/img/quote_large.png" id="img-primary" class="reverse-floating-img">
+            <img src="/img/quote_small.png" id="img-second" class="floating-img">
+            <img src="/img/quote_small.png" id="img-tertiary" class="floating-img">
+            
+            <div id="form-container">
+
+                <%- include("partials/nav.ejs") %>
+                <div id="form-items">
+                    <div class="section-container">
+                    <h2> Update/Delete Quotes </h2>
+                        <div id="content-items">
+                            <% for (i=0; i < quotes.length; i++) { %>
+                                <a href="/quote/edit?quoteId=<%=quotes[i].quoteId%>">UPDATE</a>
+                                <a href="/quote/delete?quoteId=<%=quotes[i].quoteId%>">DELETE</a>
+                                <%=quotes[i].quote%><br>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+
+</body>
+</html>

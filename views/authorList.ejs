@@ -1,0 +1,30 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <main>
+        <h2> Famous Quotes<br></h2>
+        <h1> Admin Section </h1>
+        <img src="/img/quote_large.png" id="img-primary" class="reverse-floating-img">
+        <img src="/img/quote_small.png" id="img-second" class="floating-img">
+        <img src="/img/quote_small.png" id="img-tertiary" class="floating-img">
+
+        <div id="form-container">
+            <%- include("partials/nav.ejs") %>
+
+            <div id="form-items">
+                <h2> Update/Delete Authors </h2>
+
+                <div id="content-items">
+                    <% for (i=0; i < authors.length; i++) { %>
+                        <a href="/author/edit?authorId=<%=authors[i].authorId%>">UPDATE</a>
+                        <a href="/author/delete?authorId=<%=authors[i].authorId%>">DELETE</a>
+
+                        <%=authors[i].firstName%>
+                        <%=authors[i].lastName%> <br>
+                    <% } %>
+                </div>
+            </div>
+        </div>    
+    </main>
+    <%- include("partials/footer.ejs") %>
+</body>

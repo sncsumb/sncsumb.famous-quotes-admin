@@ -1,0 +1,51 @@
+<%- include("partials/header.ejs") %>
+<body>
+
+    <main>
+        <h2> Famous Quotes<br></h2>
+        <h1> Admin Section </h1>
+        <img src="/img/quote_large.png" id="img-primary" class="reverse-floating-img">
+        <img src="/img/quote_small.png" id="img-second" class="floating-img">
+        <img src="/img/quote_small.png" id="img-tertiary" class="floating-img">
+
+        <div id="form-container">
+            <%- include("partials/nav.ejs") %>
+        
+            <div id="form-items">
+                <h2>Adding a new Author</h2>
+                <form method="POST" action="/author/new">
+                    First Name:
+                    <input type="text" name="fName"><br>
+                
+                    Last Name:
+                    <input type="text" name="lName"><br>
+                    
+                    Date of Birth:
+                    <input type="date" name="birthDate"><br>
+                    
+                    Date of Death:
+                    <input type="date" name="dod"><br>
+                    
+                    Sex:
+                    <input type="radio" name="sex" value="M"> Male
+                    <input type="radio" name="sex" value="F"> Female
+                    <br>
+
+                    Profession:
+                    <input type="text" name="profession"><br>
+
+                    Biography:
+                    <input type="text" name="biography"><br>
+
+                    <button>Add Author</button>
+                </form>
+
+                <% if (typeof message != "undefined"){ %>
+                    <h3><%= message %></h3>
+                <% } %>
+            </div>  
+        </div>
+    </main>
+    <%- include("partials/footer.ejs") %>
+    
+</body>

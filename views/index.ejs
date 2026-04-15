@@ -1,0 +1,55 @@
+<%- include("partials/header.ejs") %>
+
+    <body>
+        <main>
+    
+            <h2> Famous Quotes<br></h2>
+            <h1> Admin Section </h1>
+            <img src="/img/quote_large.png" id="img-primary" class="reverse-floating-img">
+            <img src="/img/quote_small.png" id="img-second" class="floating-img">
+            <img src="/img/quote_small.png" id="img-tertiary" class="floating-img">
+            
+            <div id="form-container">
+
+                <%- include("partials/nav.ejs") %>
+
+                <div id="form-items">
+                    <div class="section-container">
+                        <h2>Author</h2>
+                        <div class="button-alignment">
+                            <form action="/author/new" >
+                                <button class="display-button">Add Authors</button>
+                            </form class="add-button">
+                        <form action="/authors">
+                            <button class="add-button">List Authors</button>
+                        </form><br>
+                        </div>
+                    </div>
+                   
+                
+  
+                    <div class="section-container">
+                        <h2>Quotes</h2>
+                        <div class="button-alignment">
+                            <form action="/quotes">
+                                <button class="display-button">List Quotes</button>
+                            </form><br>
+                            <form action="/quote/new">
+                                <button class="add-button">Add Quotes</button>
+                            </form><br>
+                        </div>    
+                        
+                    </div>
+ 
+
+
+                    <% if (typeof message != "undefined"){ %>
+                        <h3><%=message%></h3>
+                    <% } %>
+                </div>
+            </div>
+        </main>
+        <%- include("partials/footer.ejs") %>
+
+    </body>
+</html>

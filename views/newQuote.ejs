@@ -1,0 +1,45 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+
+    <main>
+        <h2> Famous Quotes<br></h2>
+        <h1> Admin Section </h1>
+        <img src="/img/quote_large.png" id="img-primary" class="reverse-floating-img">
+        <img src="/img/quote_small.png" id="img-second" class="floating-img">
+        <img src="/img/quote_small.png" id="img-tertiary" class="floating-img">
+
+        
+        <div id="form-container">
+            <%- include("partials/nav.ejs") %>
+            <div id="form-items">
+                <h2>Adding a new Quote</h2>
+                <form method="POST" action="/quote/new">
+                    Quote:
+                    <input type="text" name="quote"><br>
+
+                    Author:
+                    <select name="authorId">
+                        <% for (author of authors) { %>
+                            <option value="<%= author.authorId %>">  
+                                <%= author.firstName %> <%= author.lastName %>
+                            </option>
+                        <% } %>
+                    </select><br>
+
+                    Category:
+                    <input type="text" name="category"><br>
+                    Likes:
+                    <input type="text" name="likes"><br>
+                    <button>Add Quote</button>
+            </form>
+
+            <% if (typeof message != "undefined"){ %>
+                <h3><%= message %></h3>
+            <% } %>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
