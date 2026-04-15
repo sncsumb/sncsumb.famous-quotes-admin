@@ -12,6 +12,15 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-family: "Petrona", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 24px;
+    letter-spacing: 22%;
+}
+
 main {
     display: grid;
     align-items: center;
@@ -82,7 +91,7 @@ main {
     max-height: 100%;
     padding-top: 30px;
     margin-top: 30px;
-    padding-left:30px;
+    padding-left: 40px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -106,6 +115,7 @@ input {
 .section-container{
     display: flex;
     flex-direction: column;
+    margin-top: 24px;
 }
 
 /* DROPDOWN */
@@ -126,27 +136,34 @@ option {
 }
 
 /* BUTTONS */
-.display-button {
-    background-color: #405EC2;
-    border-radius: 50px;
-    color: white;
+.button-base {
+    width: 200px;
+    height: 100px;
+    border-radius: 30px;
     border: 0px;
+    color: white;
     padding-right: 10px;
     padding-left: 10px;
+    font-family: "Phudu", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 20px;
+    letter-spacing: 22%;
+    line-height: 100%;
+}
+.display-button {
+    background-color: #405EC2;
 }
 
 .button-alignment {
     display: flex;
     flex-direction: row;
+    gap:20px;
 }
 
 .add-button {
     background-color: #62AA58;
-    border-radius: 50px;
-    color: white;
-    border: 0px;
-    padding-right: 10px;
-    padding-left: 10px;
 }
 
 button:hover {
@@ -197,11 +214,22 @@ nav a {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
+    font-family: "Petrona", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 20px;
+    letter-spacing: 22%;
 }
 
-nav:hover {
-    text-decoration: underline dotted;
+nav a:hover {
     background-color: #55BBFA;
+    width: 200px;
+    margin-left:20px;
+}
+
+nav a:active {
+    background-color: #1E286C;
     width: 200px;
 }
 
