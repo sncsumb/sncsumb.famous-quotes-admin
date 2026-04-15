@@ -166,6 +166,14 @@ option {
     background-color: #62AA58;
 }
 
+.submit-button {
+    background-color: #62AA58;
+    border: none;
+    color:white;
+    border-radius: 3px;
+    width: 100px;
+}
+
 button:hover {
     background-color: #55BBFA;
 }
@@ -246,4 +254,5 @@ footer {
     align-items: center;
     text-align: center;
     color: white;
+    margin-left: 235px;
 }
