@@ -41,7 +41,7 @@ app.post("/author/new", async function(req, res){
 
     let sql = `INSERT INTO q_authors
         (firstName, lastName, dob, dod, sex, profession, biography)
-        VALUES (?, ?, ? , ?, ?, ?, ?)`; //use ? to avoid SQL injection
+        VALUES (?, ?, ?, ?, ?, ?, ?)`; //use ? to avoid SQL injection
     let params = [fName, lName, birthDate, deathDate, sex, profession, biography];
     const [rows] = await pool.query(sql, params);
     res.render("newAuthor",{message: "Author added!"});
@@ -60,7 +60,8 @@ app.get("/authors", async function(req, res){
 app.get("/author/edit", async function(req, res){
     let authorId = req.query.authorId; //receive authorId when clicking on any author name
     let sql = `SELECT *,
-        DATE_FORMAT(dob, '%Y-%m-%d') dobISO
+        DATE_FORMAT(dob, '%Y-%m-%d') dobISO,
+        DATE_FORMAT(dod, '%Y-%m-%d') dodISO
         FROM q_authors
         WHERE authorId = ${authorId}`;
     const [rows] = await pool.query(sql);
@@ -159,7 +160,6 @@ app.get("/quote/edit", async function(req, res){
         NATURAL JOIN q_authors
         WHERE quoteId = ${quoteId}`;
     const [rows] = await pool.query(sql);
-    console.log(rows);
     res.render("editQuote", {"quoteInfo":rows});
 });
 
