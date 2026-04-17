@@ -34,10 +34,15 @@ app.post("/author/new", async function(req, res){
     let fName = req.body.fName; //get values submitted through the form
     let lName = req.body.lName;
     let birthDate = req.body.birthDate;
+    let deathDate = req.body.deathDate;
+    let sex = req.body.sex;
+    let profession = req.body.profession;
+    let biography = req.body.biography;
+
     let sql = `INSERT INTO q_authors
-        (firstName, lastName, dob)
-        VALUES (?, ?, ?)`; //use ? to avoid SQL injection
-    let params = [fName, lName, birthDate];
+        (firstName, lastName, dob, dod, sex, profession, biography)
+        VALUES (?, ?, ? , ?, ?, ?, ?)`; //use ? to avoid SQL injection
+    let params = [fName, lName, birthDate, deathDate, sex, profession, biography];
     const [rows] = await pool.query(sql, params);
     res.render("newAuthor",{message: "Author added!"});
 });
@@ -64,6 +69,8 @@ app.get("/author/edit", async function(req, res){
 
 //Post updated data for author
 app.post("/author/edit", async function(req, res){
+    let authorId = req.body.authorId;
+
     let sql = `UPDATE q_authors
         SET firstName = ?,
         lastName = ?,
@@ -73,13 +80,12 @@ app.post("/author/edit", async function(req, res){
         country = ?,
         portrait = ?,
         biography = ?
-        WHERE authorId = ?`;
+        WHERE authorId = ${authorId}`;
     let params = [req.body.fName,
         req.body.lName, req.body.dob,
         req.body.dod,req.body.sex, 
         req.body.profession, req.body.country,
-        req.body.portrait, req.body.biography,
-        req.body.authorId];
+        req.body.portrait, req.body.biography];
     const [rows] = await pool.query(sql,params);
     console.log(rows);
     res.redirect("/authors");
@@ -93,7 +99,7 @@ app.get("/author/delete", async function(req, res) {
         FROM q_authors
         WHERE authorId = ?`;
 
-    const [rows] = await pool.query(sql, [authorId]);
+    await pool.query(sql, [authorId]);
 
     res.redirect("/authors");
 })
@@ -147,37 +153,54 @@ app.post("/quote/new", async function(req, res){
 app.get("/quote/edit", async function(req, res){
     let quoteId = req.query.quoteId; //receive quote when clicking on any quote
     console.log(quoteId);
-    // let authorId = req.query.authorId;
-    let sql = `SELECT quoteId, quote, category, authorId, firstName,lastName
+    let sql = `SELECT *, authorId, firstName,lastName
         FROM q_quotes
         NATURAL JOIN q_authors
         WHERE quoteId = ${quoteId}`;
     const [rows] = await pool.query(sql);
+    console.log(rows);
     res.render("editQuote", {"quoteInfo":rows});
 });
 
-//Post updated data for author
+//Post updated data for quote
 app.post("/quote/edit", async function(req, res){
+    let quoteId = req.body.quoteId; //receive quoteId from hidden (body)
+    let authorId = req.body.authorId; //receive quoteId from hidden (body)
+
+    console.log(req.body);
+
     let sqlQuotes = `UPDATE q_quotes
         SET quote = ?,
-        category = ?,
-        WHERE quoteId = ?`;
+        category = ?
+        WHERE quoteId = ${quoteId}`;
     let sqlAuthor = `UPDATE q_authors
         SET firstName = ?,
         lastName = ?
-        WHERE authorId = ?`;
+        WHERE authorId = ${authorId}`;
  
     let paramsQuotes = [req.body.quote,
-        req.body.category,
-        req.body.quoteId];
+        req.body.category
+        ];
     let paramsAuthor = [
-        req.body.firstName,
-        req.body.lastName
+        req.body.fName,
+        req.body.lName
     ];   
     const [rowsQuotes] = await pool.query(sqlQuotes,paramsQuotes);
     const [rowsAuthor] = await pool.query(sqlAuthor,paramsAuthor);
     res.redirect("/quotes");
 });
+
+app.get("/quote/delete", async function(req, res) {
+    let quoteId = req.query.quoteId;
+
+    let sql = `DELETE
+        FROM q_quotes
+        WHERE quoteId = ?`;
+
+    await pool.query(sql, [quoteId]);
+
+    res.redirect("/quotes");
+})
 
 app.get("/dbTest", async(req, res) => {
    try {
