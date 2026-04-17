@@ -1,31 +1,38 @@
 <%- include("partials/header.ejs") %>
 <body>
-    <h1>Updating Quote Data</h1>
+    <main>
+        <h2> Famous Quotes<br></h2>
+        <h1> Admin Section </h1>
+        <img src="/img/quote_large.png" id="img-primary" class="reverse-floating-img">
+        <img src="/img/quote_small.png" id="img-second" class="floating-img">
+        <img src="/img/quote_small.png" id="img-tertiary" class="floating-img">
+        <h1>Updating Quote Data</h1>
 
-    <div id="form-container">
-        <%- include("partials/nav.ejs") %>
+        <div id="form-container">
+            <%- include("partials/nav.ejs") %>
 
-        <div id="form-items">
-        <h2>Updating Quote Data</h2>    
-        <form method="POST" action="/quote/edit">
-            <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
-            <input type="hidden" name="authorId" value="<%=quoteInfo[0].authorId%>">
+            <div id="form-items">
+            <h2>Updating Quote Data</h2>    
+            <form method="POST" action="/quote/edit">
+                <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
+                <input type="hidden" name="authorId" value="<%=quoteInfo[0].authorId%>">
+                
+                First Name:<br>
+                <input type="text" name="fName" value="<%=quoteInfo[0].firstName%>"><br>
             
-            First Name:<br>
-            <input type="text" name="fName" value="<%=quoteInfo[0].firstName%>"><br>
-        
-            Last Name:<br>
-            <input type="text" name="lName" value="<%=quoteInfo[0].lastName%>"><br>
-            
-            Quote:<br>
-            <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"><br>
-            
-            Category:<br>
-            <input type="text" name="category" value="<%=quoteInfo[0].category%>"><br>
-            
-            <button>Update Quote</button>
-        </form>
+                Last Name:<br>
+                <input type="text" name="lName" value="<%=quoteInfo[0].lastName%>"><br>
+                
+                Quote:<br>
+                <input type="text" name="quote" value="<%=quoteInfo[0].quote%>"><br>
+                
+                Category:<br>
+                <input type="text" name="category" value="<%=quoteInfo[0].category%>"><br>
+                
+                <button class="submit-button">Update Quote</button>
+            </form>
+            </div>
         </div>
-    </div>
+    <    
 </body>
 </html>

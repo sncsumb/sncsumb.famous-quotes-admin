@@ -75,6 +75,7 @@ app.post("/author/edit", async function(req, res){
         SET firstName = ?,
         lastName = ?,
         dob = ?,
+        dod = ?,
         sex = ?,
         profession = ?,
         country = ?,
